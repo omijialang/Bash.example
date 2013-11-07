@@ -1,0 +1,15 @@
+#!/bin/sh
+
+Err_Handle(){
+
+	echo -e "Error In File $0 Line: $2." 1>&2
+	exit 24
+}
+
+File_Install(){
+	if ! install --backup=t --preserve-timestamps \
+			--mode=$5 --owner=$3 --group=$4 -D $1 $2; then
+		return 24;
+	fi
+	return 0
+}

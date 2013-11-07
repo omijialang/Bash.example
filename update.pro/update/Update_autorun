@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. /haha/functions
+
+for tars in *.tar.gz; do
+
+	tar xzf $tars || Err_Handle $0 $LINENO
+	dir=${tars%%.tar.gz}
+	pushd $dir 1>&2
+		sh Update.sh || Err_Handle $0 $LINENO
+	popd 1>&2
+done
+
+#echo "#############"
